@@ -18,6 +18,5 @@ if __name__ == "__main__":
     veesix = ipranges["ipv6_prefixes"]
     for range in veefour:
         print("deny " + range["ip_prefix"] + ";")
-    print(veesix[0])
     for range in veesix:
         print("deny " + range["ipv6_prefix"] + ";")
