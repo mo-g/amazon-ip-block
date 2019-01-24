@@ -18,8 +18,13 @@ if __name__ == "__main__":
     veesix = ipranges["ipv6_prefixes"]
     print("geo $amazon_blocklist {")
     print("	default 0;")
+    ranges = set()
     for range in veefour:
-        print("	" + range["ip_prefix"] + " 1;")
+        ranges.add(range["ip_prefix"])
     for range in veesix:
-        print("	" + range["ipv6_prefix"] + " 1;")
+        ranges.add(range["ipv6_prefix"])
+
+
+    for range in ranges:
+        print("	" + range + " 1;")
     print("}")
