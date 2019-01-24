@@ -16,7 +16,10 @@ if __name__ == "__main__":
     ipranges = json.loads(get_aws_ranges())
     veefour = ipranges["prefixes"]
     veesix = ipranges["ipv6_prefixes"]
+    print("geo $amazon_blocklist {")
+    print("	default 0;")
     for range in veefour:
-        print("deny " + range["ip_prefix"] + ";")
+        print("	" + range["ip_prefix"] + " 1;")
     for range in veesix:
-        print("deny " + range["ipv6_prefix"] + ";")
+        print("	" + range["ipv6_prefix"] + " 1;")
+    print("}")
