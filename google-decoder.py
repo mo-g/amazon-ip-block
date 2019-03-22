@@ -1,7 +1,7 @@
 #!/usr/bin/python2
 
 import dns.resolver
-import urllib.request as request
+import argparse
 
 NETBLOCK = "_cloud-netblocks.googleusercontent.com"
 
@@ -9,12 +9,13 @@ NETBLOCK = "_cloud-netblocks.googleusercontent.com"
 def return_type(itemlist, wanttype="include"):
     contents = []
     for item in itemlist:
-        split_items = item.split(':',1)
+        split_items = item.split(':', 1)
         if len(split_items) > 1:
             itemtype, itemvalue = split_items
             if itemtype == wanttype:
                 contents.append(itemvalue)
     return contents
+
 
 def get_response(hostname):
     response = []
@@ -24,7 +25,6 @@ def get_response(hostname):
         for item in items:
             response.append(item.replace("\"", ""))
     return response
-    
 
 
 if __name__ == "__main__":
@@ -47,4 +47,3 @@ if __name__ == "__main__":
     for address in addresses:
         print("    " + str(address) + " 1;")
     print("}")
-
