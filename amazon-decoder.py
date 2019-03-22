@@ -4,14 +4,15 @@ import argparse
 import json
 import urllib.request as request
 
+NETBLOCK = "https://ip-ranges.amazonaws.com/ip-ranges.json"
+
 def get_aws_ranges():
-    url = "https://ip-ranges.amazonaws.com/ip-ranges.json"
-    response = request.urlopen(url)
+    response = request.urlopen(NETBLOCK)
     json_data = response.read()
     return json_data
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Outputs an NGINX deny list for all Amazon servers, as an anti-scraping technique.", prog="amazon-decoder", usage="amazon-decoder > /etc/nginx/amazon_blocklist.conf")
+    parser = argparse.ArgumentParser(description="Outputs an NGINX deny list for all Amazon servers, as an anti-scraping technique.", prog="amazon-decoder.py", usage="amazon-decoder.py > /etc/nginx/amazon_blocklist.conf")
     _args = parser.parse_args()
     ipranges = json.loads(get_aws_ranges())
     veefour = ipranges["prefixes"]
