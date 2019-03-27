@@ -44,6 +44,7 @@ if __name__ == "__main__":
         addresses += return_type(next_request, "ip6")
 
     print("geo $google_blocklist {")
+    print("    default 0;")
     for address in addresses:
         print("    " + str(address) + " 1;")
     print("}")
